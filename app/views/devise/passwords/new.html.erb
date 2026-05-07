@@ -1,0 +1,37 @@
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative" 
+     style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop');">
+  
+  <div class="absolute inset-0 bg-[#0b1120]/90"></div>
+
+  <div class="relative z-10 w-full max-w-md bg-[#161d2f]/80 backdrop-blur-xl border border-gray-800 rounded-3xl p-8 shadow-2xl mx-4">
+    
+    <div class="text-center mb-8">
+      <h2 class="text-[#f87171] text-3xl font-black tracking-tighter mb-1">CINEGLASS</h2>
+      <p class="text-gray-400 text-sm">Recover your movie pass</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "space-y-6" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="space-y-2">
+        <%= f.label :email, class: "text-xs font-bold text-gray-500 uppercase tracking-widest ml-1" %>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+          </span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter your email", 
+              class: "w-full pl-11 pr-4 py-3 bg-[#0b1120] border border-gray-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-[#e11d48] outline-none transition" %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.submit "Send Reset Instructions", class: "w-full py-4 bg-[#e11d48] hover:bg-[#be123c] text-white font-bold rounded-xl shadow-lg transition transform active:scale-[0.98] cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-gray-800 text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+
+  </div>
+</div>

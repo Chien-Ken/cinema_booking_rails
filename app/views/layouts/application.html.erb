@@ -23,7 +23,33 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <!-- Add 'min-h-screen' and 'flex flex-col' to the body -->
+<body class="min-h-screen flex flex-col bg-[#0b1120]">
+
+  <%= render "layouts/header" %>
+
+  <!-- FLASH MESSAGES SECTION -->
+  <% if notice %>
+    <div class="bg-blue-900/30 border border-blue-500/50 text-blue-200 px-4 py-3 text-center text-sm">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="bg-red-900/30 border border-red-500/50 text-red-200 px-4 py-3 text-center text-sm">
+      <%= alert %>
+    </div>
+  <% end %>
+
+
+
+  <!-- Add 'flex-grow' to your main container -->
+  <main class="flex-grow">
     <%= yield %>
-  </body>
+  </main>
+
+  <%= render "layouts/footer" %>
+  
+</body>
+
 </html>

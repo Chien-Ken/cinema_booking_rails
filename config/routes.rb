@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get "users/new"
+  get "home/index"
+  root "home#index"
+  # Standard Devise routes
+  devise_for :users
+  # Custom pretty routes for Devise
+  devise_scope :user do
+    get "/signup", to: "devise/registrations#new", as: :signup
+    get "/login", to: "devise/sessions#new", as: :login
+    delete "/logout", to: "devise/sessions#destroy", as: :logout
+    get "/forgot_password", to: "devise/passwords#new", as: :forgot_password
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

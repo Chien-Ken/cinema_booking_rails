@@ -1,0 +1,54 @@
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative" 
+     style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070&auto=format&fit=crop');">
+  
+  <div class="absolute inset-0 bg-[#0b1120]/90"></div>
+
+  <div class="relative z-10 w-full max-w-md bg-[#161d2f]/80 backdrop-blur-xl border border-gray-800 rounded-3xl p-8 shadow-2xl mx-4">
+    
+    <div class="text-center mb-8">
+      <h2 class="text-[#f87171] text-3xl font-black tracking-tighter mb-1">CINEGLASS</h2>
+      <p class="text-gray-400 text-sm">Secure your new movie pass</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="space-y-2">
+        <div class="flex justify-between items-center ml-1">
+          <%= f.label :password, "New Password", class: "text-xs font-bold text-gray-500 uppercase tracking-widest" %>
+          <% if @minimum_password_length %>
+            <span class="text-[10px] text-gray-600">(<%= @minimum_password_length %> chars min)</span>
+          <% end %>
+        </div>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+          </span>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "••••••••", 
+              class: "w-full pl-11 pr-4 py-3 bg-[#0b1120] border border-gray-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-[#e11d48] outline-none transition" %>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :password_confirmation, "Confirm New Password", class: "text-xs font-bold text-gray-500 uppercase tracking-widest ml-1" %>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </span>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••", 
+              class: "w-full pl-11 pr-4 py-3 bg-[#0b1120] border border-gray-700 rounded-xl text-white text-sm focus:ring-2 focus:ring-[#e11d48] outline-none transition" %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.submit "Update Password", class: "w-full py-4 bg-[#e11d48] hover:bg-[#be123c] text-white font-bold rounded-xl shadow-lg transition transform active:scale-[0.98] cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-gray-800 text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+
+  </div>
+</div>
