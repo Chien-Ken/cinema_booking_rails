@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_07_021642) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_08_024537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "movies", force: :cascade do |t|
+    t.string "actor"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "director"
+    t.integer "duration_minutes"
+    t.string "genre"
+    t.string "poster_url"
+    t.decimal "rating", precision: 3, scale: 1, default: "0.0"
+    t.date "release_date"
+    t.string "title"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "theaters", force: :cascade do |t|
+    t.string "address"
+    t.string "city"
+    t.string "closing_time"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "email"
+    t.string "image_url"
+    t.string "name"
+    t.string "opening_time"
+    t.string "phone"
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,6 +50,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_07_021642) do
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
+    t.integer "role", default: 0
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

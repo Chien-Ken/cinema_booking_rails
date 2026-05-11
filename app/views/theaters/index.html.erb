@@ -1,0 +1,58 @@
+<div class="bg-[#0b1120] min-h-screen py-16">
+  <div class="container mx-auto px-6">
+    
+    <div class="mb-12">
+      <h1 class="text-white text-5xl font-extrabold tracking-tight mb-2">Our Theaters</h1>
+      <p class="text-gray-400 text-lg font-medium">Find the perfect CineGlass location for your next movie night.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <% @theaters.each do |theater| %>
+        <div class="group bg-[#161d2f] border border-gray-800 rounded-3xl overflow-hidden flex flex-col transition-all duration-500 hover:border-[#e11d48]/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <% if theater.image_url.present? %>
+              <img src="<%= theater.image_url %>" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" alt="<%= theater.name %>">
+            <% else %>
+              <div class="w-full h-full bg-gray-900 flex items-center justify-center">
+                <span class="text-gray-700 italic text-sm">No image available</span>
+              </div>
+            <% end %>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161d2f] via-transparent to-transparent opacity-60"></div>
+          </div>
+
+          <div class="p-7 flex flex-col flex-grow">
+            <h3 class="text-white text-2xl font-bold mb-4 leading-tight">
+              <%= theater.name %>
+            </h3>
+            
+            <div class="space-y-4 mb-10">
+              <div class="flex items-start gap-3 text-gray-400">
+                <svg class="w-5 h-5 mt-0.5 text-[#e11d48] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span class="text-sm leading-snug"><%= theater.address %>, <%= theater.city %></span>
+              </div>
+              
+              <div class="flex items-center gap-3 text-gray-400">
+                <svg class="w-5 h-5 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  <%= theater.opening_time %> — <%= theater.closing_time %>
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-auto">
+              <%= link_to theater_path(theater), class: "group/btn relative block w-full overflow-hidden rounded-xl bg-[#e11d48] px-6 py-3.5 text-center transition-all duration-300 hover:bg-[#be123c] active:scale-95 shadow-lg shadow-black/20" do %>
+                <span class="relative z-10 text-white text-sm font-black uppercase tracking-tighter">View Details</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
