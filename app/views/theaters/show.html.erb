@@ -1,15 +1,18 @@
 <div class="bg-[#0b1120] min-h-screen text-white">
   
   <section class="relative h-[450px] w-full flex items-end pb-12 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <% if @theater.image_url.present? %>
-        <img src="<%= @theater.image_url %>" class="w-full h-full object-cover opacity-40" alt="<%= @theater.name %>">
-      <% else %>
-        <div class="w-full h-full bg-slate-900"></div>
-      <% end %>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/60 to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-[#0b1120] via-transparent to-transparent"></div>
-    </div>
+   <div class="relative aspect-[16/10] overflow-hidden">
+    <% if @theater.main_image.attached? %>
+      <%= image_tag theater_detail_image(@theater), 
+          class: "w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700", 
+          alt: @theater.name %>
+    <% else %>
+      <div class="w-full h-full bg-gray-900 flex items-center justify-center">
+        <span class="text-gray-700 italic text-sm">No image available</span>
+      </div>
+    <% end %>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#161d2f] via-transparent to-transparent opacity-60"></div>
+  </div>
 
     <div class="container mx-auto px-6 md:px-12 relative z-10">
       <p class="text-[#f87171] text-xs font-black uppercase tracking-[0.3em] mb-3">Theater Profile</p>

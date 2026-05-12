@@ -1,0 +1,151 @@
+<%= form_with(model: [:admin, @theater], local: true, class: "space-y-8") do |f| %>
+  
+  <%# 1. Basic Information Card %>
+  <div class="bg-[#1e293b] p-8 rounded-2xl border border-slate-700 shadow-xl">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="p-2 bg-blue-500/10 rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold text-white">Basic Information</h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6">
+      <div>
+        <%= f.label :name, "Theater Name", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+        <%= f.text_field :name, placeholder: "e.g. FaFim Nga Tu So", 
+            class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none" %>
+      </div>
+
+    <%# City Dropdown %>
+    <div>
+      <%= f.label :city, "City", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+      <%= f.select :city, 
+          [
+            ['Hà Nội', 'Hà Nội'], 
+            ['TP. Hồ Chí Minh', 'TP. Hồ Chí Minh'], 
+            ['Đà Nẵng', 'Đà Nẵng'], 
+            ['Hải Phòng', 'Hải Phòng'], 
+            ['Cần Thơ', 'Cần Thơ'],
+            ['Huế', 'Huế'],
+            ['Nha Trang', 'Nha Trang'],
+            ['Đồng Nai', 'Đồng Nai'],
+            ['Vũng Tàu', 'Vũng Tàu'],
+            ['Quy Nhơn', 'Quy Nhơn']
+          ], 
+          { prompt: 'Select a city' }, 
+          { class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none appearance-none cursor-pointer" } 
+      %>
+    </div>
+
+      <div>
+        <%= f.label :address, "Physical Address", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+        <%= f.text_area :address, rows: 2, placeholder: "Enter the full street address...", 
+            class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none" %>
+      </div>
+    </div>
+  </div>
+
+ <%# 2. Operational Details Card %>
+<div class="bg-[#1e293b] p-8 rounded-2xl border border-slate-700 shadow-xl">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="p-2 bg-purple-500/10 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    </div>
+    <h2 class="text-xl font-bold text-white">Operational Details</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <%# Phone Number %>
+    <div>
+      <%= f.label :phone, "Phone Number", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+      <%= f.text_field :phone, placeholder: "+84 000 000 000", 
+          class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none" %>
+    </div>
+
+    <%# Email Address %>
+    <div>
+      <%= f.label :email, "Email Address", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+      <%= f.email_field :email, placeholder: "contact@theater.com", 
+          class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none" %>
+    </div>
+
+    <%# Opening Time %>
+    <div>
+      <%= f.label :opening_time, "Opening Time", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+      <div class="relative">
+        <%= f.time_field :opening_time, 
+            class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none appearance-none" %>
+      </div>
+    </div>
+
+    <%# Closing Time %>
+    <div>
+      <%= f.label :closing_time, "Closing Time", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+      <div class="relative">
+        <%= f.time_field :closing_time, 
+            class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none appearance-none" %>
+      </div>
+    </div>
+
+    <%# Description - Full Width %>
+    <div class="md:col-span-2">
+      <%= f.label :description, "Description", class: "block text-sm font-semibold text-gray-400 mb-2" %>
+      <%= f.text_area :description, rows: 4, placeholder: "Brief overview of the theater facilities...", 
+          class: "w-full bg-[#0f172a] border-slate-700 text-white rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 transition outline-none resize-none" %>
+    </div>
+  </div>
+</div>
+
+ <%# 3. Theater Image Card %>
+<div class="bg-[#1e293b] p-8 rounded-2xl border border-slate-700 shadow-xl">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="p-2 bg-emerald-500/10 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    </div>
+    <h2 class="text-xl font-bold text-white">Theater Image</h2>
+  </div>
+
+  <%# The Visual Upload Box %>
+  <div class="relative group h-64 w-full rounded-2xl overflow-hidden border-2 border-dashed border-slate-700 bg-[#0f172a] hover:border-red-500/50 transition-all cursor-pointer">
+    
+    <%# Background Decorative Image (Matches your CineGlass screenshot) %>
+    <div class="absolute inset-0 bg-cover bg-center opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-30 transition-all duration-700" 
+         style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXRQ2xUiW02UMx3KRFaLgXk_WsiH80IbijgA&s');">
+    </div>
+    
+    <%# Overlay Gradient %>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent"></div>
+
+    <%# The actual hidden file input %>
+    <%= f.file_field :main_image, class: "absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" %>
+
+    <%# Centered Upload UI %>
+    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
+      <div class="p-4 bg-slate-800/80 rounded-full mb-4 border border-slate-600 group-hover:scale-110 group-hover:bg-red-500/20 group-hover:border-red-500/50 transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400 group-hover:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg>
+      </div>
+      <p class="text-white font-medium">Click to upload or drag and drop</p>
+      <p class="text-gray-500 text-xs mt-1">Supported formats: JPG, PNG, WEBP (Max 5MB)</p>
+    </div>
+  </div>
+</div>
+
+    <%# Final Action Buttons %>
+<div class="flex flex-col gap-4 pt-6">
+  <%= f.submit theater.new_record? ? "💾 Create New Theater" : "💾 Save Theater Changes", 
+      class: "w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-red-900/40 transition-all transform active:scale-95 cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2" %>
+  
+  <%= link_to "Cancel & Discard", admin_theaters_path, 
+      class: "w-full py-4 bg-slate-800/50 text-gray-500 hover:text-white hover:bg-slate-800 rounded-xl transition text-center font-semibold" %>
+</div>
+
+
+<% end %>

@@ -1,0 +1,33 @@
+<turbo-frame id="search_results_frame">
+  <% if @results.any? %>
+    <div class="bg-[#1a202c] border border-slate-700 rounded-xl shadow-2xl mt-2 max-h-64 overflow-y-auto">
+      <% @results.each do |result| %>
+        <% record = result.searchable %>
+
+        <%= link_to record,
+          class: "flex items-center gap-4 px-4 py-3 hover:bg-white/5 border-b border-slate-800 last:border-0",
+          data: { turbo: false } do %>
+
+          <!-- IMAGE -->
+          <% if record.is_a?(Movie) && record.poster.attached? %>
+            <div class="flex-shrink-0">
+              <%= image_tag record.poster.variant(resize_to_fill: [48, 72]),
+                  class: "w-12 h-18 object-cover rounded-md" %>
+            </div>
+          <% end %>
+
+          <!-- TITLE -->
+          <div class="text-slate-200 font-bold text-sm">
+            <%= record.is_a?(Movie) ? record.title : record.name %>
+          </div>
+
+        <% end %>
+      <% end %>
+    </div>
+
+  <% elsif @query.present? %>
+    <div class="bg-[#1a202c] border border-slate-700 rounded-xl p-4 text-slate-500 text-sm mt-2">
+      No matches found.
+    </div>
+  <% end %>
+</turbo-frame>

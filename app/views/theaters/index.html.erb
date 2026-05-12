@@ -11,15 +11,17 @@
         <div class="group bg-[#161d2f] border border-gray-800 rounded-3xl overflow-hidden flex flex-col transition-all duration-500 hover:border-[#e11d48]/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           
           <div class="relative aspect-[16/10] overflow-hidden">
-            <% if theater.image_url.present? %>
-              <img src="<%= theater.image_url %>" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" alt="<%= theater.name %>">
-            <% else %>
-              <div class="w-full h-full bg-gray-900 flex items-center justify-center">
-                <span class="text-gray-700 italic text-sm">No image available</span>
-              </div>
-            <% end %>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#161d2f] via-transparent to-transparent opacity-60"></div>
-          </div>
+          <% if theater.main_image.attached? %>
+            <%= image_tag theater.main_image, 
+                class: "w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700", 
+                alt: theater.name %>
+          <% else %>
+            <div class="w-full h-full bg-gray-900 flex items-center justify-center">
+              <span class="text-gray-700 italic text-sm">No image available</span>
+            </div>
+          <% end %>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#161d2f] via-transparent to-transparent opacity-60"></div>
+        </div>
 
           <div class="p-7 flex flex-col flex-grow">
             <h3 class="text-white text-2xl font-bold mb-4 leading-tight">

@@ -48,6 +48,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
       <% @movies.each do |movie| %>
+      <%= link_to movie_path(movie) do %>
         <div class="group relative cursor-pointer">
           <div class="aspect-[2/3] rounded-2xl overflow-hidden bg-gray-900 shadow-xl transition-all duration-300 group-hover:scale-105 border border-gray-800 group-hover:border-[#e11d48]/50">
             <% if movie.poster.attached? %>
@@ -69,6 +70,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       <% end %>
     </div>
 

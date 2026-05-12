@@ -1,4 +1,10 @@
-<div>
-  <h1 class="font-bold text-4xl">Admin::Theaters#new</h1>
-  <p>Find me in app/views/admin/theaters/new.html.erb</p>
+<div class="max-w-3xl mx-auto py-12 px-4">
+  <div class="mb-10">
+    <%= link_to "← Back to list", admin_theaters_path, class: "text-gray-500 hover:text-white transition text-sm" %>
+    <h1 class="text-3xl font-bold text-white mt-4">
+      <%= action_name == 'new' ? 'Add New Theater' : 'Edit Theater' %>
+    </h1>
+  </div>
+
+  <%= render "form", theater: @theater %>
 </div>

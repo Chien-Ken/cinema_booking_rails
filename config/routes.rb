@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "home#index"
+  get 'search', to: 'search#index'
+  resources :movies, only: [:index, :show]
+  root "movies#index"
 
   devise_for :users
 
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :theaters, only: [:index, :show]
 
   namespace :admin do
+    resources :movies
     root to: "dashboard#index"
     resources :theaters
   end
