@@ -16,6 +16,15 @@ class MoviesController < ApplicationController
   def booking
   @movie = Movie.find(params[:id])
   @theaters = Theater.includes(screens: :showtimes).all
-end
+  end
+
+  def select_seats
+  @showtime = Showtime.find(params[:id])
+  @screen = @showtime.screen
+  @movie = @showtime.movie
+  # Get all 100 seats ordered by Row and Number
+  @seats = @screen.seats.order(:row, :number)
+  @booked_seats = @showtime.booked_seat_ids
+  end
 
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'search', to: 'search#index'
+  get "search", to: "search#index"
   resources :movies, only: [:index, :show]
   root "movies#index"
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :movies do
   member do
     get :booking
+    get "select_seats/:showtime_id", to: "movies#select_seats", as: "select_seats"
   end
  end
 

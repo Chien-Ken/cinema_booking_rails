@@ -9,4 +9,5 @@ class Movie < ApplicationRecord
   multisearchable against: [:title, :genre, :director, :actor, :description]
   has_many :showtimes, dependent: :destroy
   has_many :screens, through: :showtimes
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

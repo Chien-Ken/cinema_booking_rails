@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_13_031815) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_15_071130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_031815) do
     t.string "director"
     t.integer "duration_minutes"
     t.string "genre"
+    t.decimal "price", precision: 8, scale: 2, default: "10.0"
     t.decimal "rating", precision: 3, scale: 1, default: "0.0"
     t.date "release_date"
     t.string "title"
@@ -64,12 +65,32 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_031815) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "seat_id", null: false
+    t.bigint "showtime_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["seat_id"], name: "index_reservations_on_seat_id"
+    t.index ["showtime_id"], name: "index_reservations_on_showtime_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "screens", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.bigint "theater_id", null: false
     t.datetime "updated_at", null: false
     t.index ["theater_id"], name: "index_screens_on_theater_id"
+  end
+
+  create_table "seats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "number"
+    t.string "row"
+    t.bigint "screen_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["screen_id"], name: "index_seats_on_screen_id"
   end
 
   create_table "showtimes", force: :cascade do |t|
@@ -111,7 +132,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_031815) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reservations", "seats"
+  add_foreign_key "reservations", "showtimes"
+  add_foreign_key "reservations", "users"
   add_foreign_key "screens", "theaters"
+  add_foreign_key "seats", "screens"
   add_foreign_key "showtimes", "movies"
   add_foreign_key "showtimes", "screens"
 end

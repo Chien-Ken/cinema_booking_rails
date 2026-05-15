@@ -9,9 +9,7 @@
     </div>
 
     <% @theaters.each do |theater| %>
-  <%# 1. THEATER CHECK: Only show the theater if it has showtimes for this movie %>
   <% if theater.showtimes.where(movie: @movie).exists? %>
-    
     <section class="mb-12">
       <h2 class="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
         <span class="w-1 h-6 bg-red-600 rounded-full"></span>
@@ -30,7 +28,7 @@
               
               <div class="flex flex-wrap gap-3">
                 <% screen.showtimes.where(movie: @movie).order(:start_time).each do |showtime| %>
-                  <%= link_to "#", class: "min-w-[90px] text-center py-2 bg-slate-900 border border-slate-700 rounded-md text-sm font-semibold text-slate-300 hover:bg-red-600 hover:border-red-600 hover:text-white transition-all shadow-sm" do %>
+                  <%= link_to select_seats_movie_path(@movie, showtime_id: showtime.id), class: "min-w-[90px] text-center py-2 bg-slate-900 border border-slate-700 rounded-md text-sm font-semibold text-slate-300 hover:bg-red-600 hover:border-red-600 hover:text-white transition-all shadow-sm" do %>
                     <%= showtime.start_time.strftime("%H:%M") %>
                   <% end %>
                 <% end %>
