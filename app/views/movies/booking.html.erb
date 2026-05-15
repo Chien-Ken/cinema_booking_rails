@@ -1,0 +1,52 @@
+<div class="min-h-screen bg-[#0b0f1a] text-slate-300 py-12 px-4 sm:px-6">
+  <div class="max-w-5xl mx-auto">
+    
+    <%# Header Section %>
+    <div class="mb-12 border-b border-slate-800 pb-6">
+      <h1 class="text-3xl font-black text-white uppercase tracking-tighter">
+        Select Showtime: <span class="text-red-500"><%= @movie.title %></span>
+      </h1>
+    </div>
+
+    <% @theaters.each do |theater| %>
+  <%# 1. THEATER CHECK: Only show the theater if it has showtimes for this movie %>
+  <% if theater.showtimes.where(movie: @movie).exists? %>
+    
+    <section class="mb-12">
+      <h2 class="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-red-600 rounded-full"></span>
+        <%= theater.name %>
+      </h2>
+
+      <div class="space-y-8 ml-3 border-l border-slate-800 pl-6">
+        <%# 2. SCREEN LOOP %>
+        <% theater.screens.each do |screen| %>
+          <%# 3. SCREEN CHECK: Only show screen if it has showtimes for this movie %>
+          <% if screen.showtimes.where(movie: @movie).exists? %>
+            <div>
+              <h3 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">
+                <%= screen.name %>
+              </h3>
+              
+              <div class="flex flex-wrap gap-3">
+                <% screen.showtimes.where(movie: @movie).order(:start_time).each do |showtime| %>
+                  <%= link_to "#", class: "min-w-[90px] text-center py-2 bg-slate-900 border border-slate-700 rounded-md text-sm font-semibold text-slate-300 hover:bg-red-600 hover:border-red-600 hover:text-white transition-all shadow-sm" do %>
+                    <%= showtime.start_time.strftime("%H:%M") %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %> <%# End Screen Check %>
+        <% end %> <%# End Screen Loop %>
+        
+        <% if theater.screens.empty? %>
+          <p class="text-slate-600 italic text-sm">No screens available for this theater yet.</p>
+        <% end %>
+      </div>
+    </section>
+
+  <% end %> <%# End Theater Check %>
+<% end %> <%# End Theater Loop %>
+
+  </div>
+</div>

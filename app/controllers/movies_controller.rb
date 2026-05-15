@@ -12,4 +12,10 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
   end
+
+  def booking
+  @movie = Movie.find(params[:id])
+  @theaters = Theater.includes(screens: :showtimes).all
+end
+
 end

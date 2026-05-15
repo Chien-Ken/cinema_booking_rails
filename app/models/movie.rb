@@ -7,4 +7,6 @@ class Movie < ApplicationRecord
   has_one_attached :poster
   validates :title, :director, :genre, presence: true
   multisearchable against: [:title, :genre, :director, :actor, :description]
+  has_many :showtimes, dependent: :destroy
+  has_many :screens, through: :showtimes
 end

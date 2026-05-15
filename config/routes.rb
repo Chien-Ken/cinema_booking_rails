@@ -18,7 +18,15 @@ Rails.application.routes.draw do
     resources :movies
     root to: "dashboard#index"
     resources :theaters
+    resources :screens
+    resources :showtimes
   end
+
+  resources :movies do
+  member do
+    get :booking
+  end
+ end
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

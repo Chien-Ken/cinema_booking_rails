@@ -3,16 +3,16 @@
   <!-- Logo (Custom color to match CINEGLASS) -->
   <h2 class="text-2xl font-black tracking-tighter text-[#f87171]">CINEGLASS</h2>
 
-<div class="relative" data-controller="search">
+<div class="relative flex-1 max-w-2xl mx-8" data-controller="search">
   <%= form_with url: search_path,
                 method: :get,
                 data: { turbo_frame: "search_results_frame" } do |f| %>
 
-    <%= f.text_field :query,
-        placeholder: "Search movies...",
-        class: "bg-slate-900 border-slate-700 rounded-full py-2 px-4 text-sm text-white",
-        data: { action: "input->search#update" },
-        autocomplete: "off" %>
+   <%= f.text_field :query,
+    placeholder: "Search movies...",
+    class: "w-full bg-slate-900 border border-slate-700 rounded-full py-2 px-5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-red-400",
+    data: { action: "input->search#update" },
+    autocomplete: "off" %>
 
   <% end %>
 

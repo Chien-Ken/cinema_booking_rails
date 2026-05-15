@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_12_035808) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_13_031815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -64,6 +64,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_035808) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
+  create_table "screens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.bigint "theater_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theater_id"], name: "index_screens_on_theater_id"
+  end
+
+  create_table "showtimes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "movie_id", null: false
+    t.bigint "screen_id", null: false
+    t.datetime "start_time"
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_showtimes_on_movie_id"
+    t.index ["screen_id"], name: "index_showtimes_on_screen_id"
+  end
+
   create_table "theaters", force: :cascade do |t|
     t.string "address"
     t.string "city"
@@ -93,4 +111,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_035808) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "screens", "theaters"
+  add_foreign_key "showtimes", "movies"
+  add_foreign_key "showtimes", "screens"
 end
