@@ -58,7 +58,7 @@ export default class extends Controller {
       this.submitButtonTarget.disabled = false
       this.buttonTextTarget.innerText = "CONFIRM & PAY"
     } else if (paymentIntent.status === 'succeeded') {
-      window.location.href = "/my_bookings";
+      window.location.href = "/payments/success?payment_intent=" + paymentIntent.id;
     }
   }
 

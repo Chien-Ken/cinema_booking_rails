@@ -12,4 +12,10 @@ class TicketMailer < ApplicationMailer
     @movie = @showtime.movie
     mail(to: @user.email, subject: "🍿 Xác nhận đặt vé thành công: #{@movie.title}")
   end
+
+  def cancel_ticket(ticket)
+    @ticket = ticket
+    @user = ticket.user
+    mail(to: @user.email, subject: "❌ Thông báo hủy vé và hoàn tiền ##{@ticket.id}")
+  end
 end

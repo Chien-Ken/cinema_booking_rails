@@ -1,31 +1,26 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  layouts:
+    header:
+      home: "Home"
+      movies: "Movies"
+      my_bookings: "My Bookings"
+      theaters: "Theaters"
+      admin: "Admin Portal"
+      sign_in: "Login"
+      log_out: "Logout"
+      sign_up: "Sign Up"
+      search_placeholder: "Search movies..."
+      welcome: "Hi, %{name}"
+
+  movies:
+    index:
+      trending: "Trending Now"
+      trending_title: "NEON DRIFT: ORIGINS"
+      trending_desc: "In a world where memories are traded like currency, one rogue pilot discovers a secret that could collapse the digital empire of Neo-Tokyo."
+      book_now: "Book Now"
+      watch_trailer: "Watch Trailer"
+      now_showing: "Now Showing"
+      coming_soon: "Coming Soon"
+      filter_sort: "Filter & Sort"
+      no_poster: "No Poster"
+      duration_short: "%{minutes}m"

@@ -1,0 +1,26 @@
+vi:
+  layouts:
+    header:
+      home: "Trang chủ"
+      movies: "Phim"
+      my_bookings: "Đã đặt"
+      theaters: "Rạp"
+      admin: "Quản trị"
+      sign_in: "Đăng nhập"
+      log_out: "Đăng xuất"
+      sign_up: "Đăng ký"
+      search_placeholder: "Tìm kiếm phim..."
+      welcome: "Xin chào, %{name}"
+
+  movies:
+    index:
+      trending: "Xu hướng"
+      trending_title: "NEON DRIFT: ORIGINS"
+      trending_desc: "Trong một thế giới nơi ký ức được trao đổi như tiền tệ, một phi công nổi loạn phát hiện ra bí mật có thể đánh sập đế chế kỹ thuật số của Neo-Tokyo."
+      book_now: "Đặt vé ngay"
+      watch_trailer: "Xem Trailer"
+      now_showing: "Phim đang chiếu"
+      coming_soon: "Phim sắp chiếu"
+      filter_sort: "Lọc & Sắp xếp"
+      no_poster: "Không có ảnh"
+      duration_short: "%{minutes}phút"

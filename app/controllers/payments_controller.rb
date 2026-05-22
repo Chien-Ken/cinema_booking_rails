@@ -50,4 +50,15 @@ class PaymentsController < ApplicationController
 
   def create; end
   def success; end
+
+ def check_status
+  ticket = Ticket.find_by(stripe_payment_intent_id: params[:payment_intent_id])
+
+  if ticket.present? && ticket.status == "paid"
+    render json: { status: "completed" }
+  else
+    render json: { status: "processing" }
+  end
+end
+
 end

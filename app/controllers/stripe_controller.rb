@@ -93,7 +93,10 @@ class StripeController < ApplicationController
       else
         puts "💰 CLI Test Payment Received! (No custom metadata provided to write to DB)"
       end
-      
+      when "charge.refunded"
+        refund_object = event.data.object
+
+        puts "🔄 Webhook Received: Charge refunded from Stripe! (ID: #{refund_object.id})"
     else
       puts "Unhandled event type: #{event.type}"
     end

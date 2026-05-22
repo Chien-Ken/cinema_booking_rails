@@ -1,3 +1,39 @@
-<div>
-   This is the success page. You can show a confirmation message and the ticket details here. 
+<div class="loading-container" style="text-align: center; margin-top: 100px;">
+  <div class="spinner"></div> <h2 style="color: #1e293b; margin-top: 20px;">Đang khởi tạo vé xem phim của bạn...</h2>
+  <p style="color: #64748b;">Vui lòng không đóng hoặc tải lại trang này.</p>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 1. Lấy cái mã payment_intent_id từ URL xuống
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentIntentId = urlParams.get('payment_intent');
+
+    if (!paymentIntentId) {
+      window.location.href = "/"; // Không có mã thì đá về trang chủ
+      return;
+    }
+
+    // 2. Viết hàm đi hỏi thăm Server
+    function checkTicketStatus() {
+      fetch(`/payments/check_status?payment_intent_id=${paymentIntentId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === "completed") {
+            // 🎉 DB đã lưu xong vé! Cho bay về trang My Bookings luôn
+            window.location.href = "/my_bookings?status=success";
+          } else {
+            // ⏳ DB chưa xong, đợi tiếp 1 giây (1000ms) rồi tự gọi lại chính nó
+            setTimeout(checkTicketStatus, 1000);
+          }
+        })
+        .catch(error => {
+          console.error("Lỗi check status:", error);
+          setTimeout(checkTicketStatus, 2000); // Lỗi mạng thì đợi lâu hơn tí rồi check lại
+        });
+    }
+
+    // 3. Kích hoạt vòng lặp check ngầm
+    checkTicketStatus();
+  });
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+      
+      <div style="background-color: #ef4444; padding: 20px; text-align: center;">
+        <h1 style="color: #ffffff; margin: 0; font-size: 24px; letter-spacing: 1px;">❌ HỦY VÉ THÀNH CÔNG</h1>
+      </div>
+
+      <div style="padding: 30px; color: #334155; line-height: 1.6;">
+        <p style="font-size: 16px; margin-top: 0;">Xin chào <strong><%= @user.email.split('@').first %></strong>,</p>
+        <p style="font-size: 15px;">Hệ thống xác nhận bạn đã hủy thành công đơn đặt vé cho bộ phim dưới đây:</p>
+        
+        <div style="background-color: #f1f5f9; border-left: 4px solid #ef4444; padding: 15px; margin: 20px 0; border-radius: 0 4px 4px 0;">
+          <h3 style="margin: 0 0 8px 0; color: #1e293b; font-size: 18px;"><%= @ticket.showtime.movie.title %></h3>
+          <p style="margin: 0; font-size: 14px; color: #64748b;">
+            📅 Suất chiếu: <%= @ticket.showtime.start_time.strftime("%d/%m/%Y - %H:%M") %>
+          </p>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px;">
+          <tr>
+            <td style="padding: 8px 0; color: #64748b;">Mã hóa đơn:</td>
+            <td style="padding: 8px 0; text-align: right; font-weight: bold; color: #1e293b;">#<%= @ticket.id %></td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #64748b;">Số tiền hoàn lại:</td>
+            <td style="padding: 8px 0; text-align: right; font-weight: bold; color: #ef4444; font-size: 16px;">
+              <%= number_to_currency(@ticket.total_amount, unit: "$", precision: 0, format: "%n %u", delimiter: ".") %>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #64748b;">Hình thức hoàn trả:</td>
+            <td style="padding: 8px 0; text-align: right; color: #1e293b;">Cổng thanh toán Stripe</td>
+          </tr>
+        </table>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 25px 0;" />
+
+        <p style="font-size: 13px; color: #64748b; font-style: italic; background-color: #fff7ed; padding: 10px; border-radius: 6px; border: 1px solid #ffedd5;">
+          💡 <strong>Lưu ý:</strong> Tiền sẽ được Stripe hoàn trả trực tiếp vào tài khoản thẻ bạn đã dùng để thanh toán trong vòng <strong>3 đến 7 ngày làm việc</strong> tùy thuộc vào ngân hàng của bạn.
+        </p>
+      </div>
+
+      <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #94a3b8;">
+        <p style="margin: 0;">Đây là email tự động từ hệ thống Cinema Booking. Vui lòng không trả lời email này.</p>
+      </div>
+    </div>
+  </body>
+</html>

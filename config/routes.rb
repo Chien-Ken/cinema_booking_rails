@@ -30,12 +30,18 @@ Rails.application.routes.draw do
   end
  end
 
- resources :my_bookings, only: [:index]
+ resources :my_bookings, only: [:index, :show] do
+  member do
+    patch :cancel
+  end
+end
 
 
  post "/webhooks/stripe", to: "stripe#stripe"
 
  get "/payments/success", to: "payments#success"
+
+ get "payments/check_status", to: "payments#check_status"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

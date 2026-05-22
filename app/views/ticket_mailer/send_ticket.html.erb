@@ -13,7 +13,7 @@
     <p style="margin: 8px 0;">📺 <strong>Phòng chiếu:</strong> <%= @showtime.screen.name %></p>
     <p style="margin: 8px 0;">📅 <strong>Suất chiếu:</strong> <%= @showtime.start_time.strftime("%d/%m/%Y lúc %H:%M") %></p>
     <p style="margin: 8px 0;">💺 <strong>Số ghế đã chọn:</strong> <span style="color: #ec4899; font-weight: bold;"><%= @ticket.ticket_seats.pluck(:seat_number).join(', ') %></span></p>
-    <p style="margin: 8px 0;">💰 <strong>Tổng thanh toán:</strong> <%= number_to_currency(@ticket.total_amount, unit: "VND", precision: 0, format: "%n %u") %></p>
+    <p style="margin: 8px 0;">💰 <strong>Tổng thanh toán:</strong> <%= number_to_currency(@ticket.total_amount, unit: "$", precision: 0, format: "%n %u") %></p>
   </div>
 
   <div style="text-align: center; margin-top: 25px;">

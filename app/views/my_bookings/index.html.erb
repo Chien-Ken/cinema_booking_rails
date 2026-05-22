@@ -56,11 +56,25 @@
               
             </div>
 
-            <div>
-              <button class="bg-slate-800 hover:bg-red-900 transition-colors duration-300 text-slate-300 hover:text-white px-5 py-2 rounded-lg text-xs font-bold border border-slate-700 shadow-lg">
-                Cancel Booking
-              </button>
-            </div>
+           <div class="booking-actions" style="margin-top: 15px;">
+              <% if ticket.status == "paid" %>
+                <% # Check xem suất chiếu còn cách hiện tại bao nhiêu phút %>
+                <% if ticket.showtime.start_time > 60.minutes.from_now %>
+                  
+                  <%= button_to "Hủy vé & Hoàn tiền", cancel_my_booking_path(ticket), 
+                                method: :patch, 
+                                data: { confirm: "Bạn có chắc chắn muốn hủy vé này? Tiền sẽ được hoàn lại 100% vào thẻ của bạn." }, 
+                                style: "background-color: #ef4444; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;" %>
+                                
+                <% else %>
+                  <span style="color: #94a3b8; font-size: 13px; font-style: italic;">
+                    ⚠️ Đã hết thời hạn hủy vé (Sát giờ hoặc phim đã chiếu)
+                  </span>
+                <% end %>
+              <% elsif ticket.status == "canceled" %>
+                <span style="color: #ef4444; font-weight: bold; font-size: 14px;">❌ Đã hủy & Hoàn tiền</span>
+              <% end %>
+           </div>
           </div>
 
           <div class="w-full md:w-40 border-t md:border-t-0 md:border-l border-dashed border-slate-700 p-6 flex flex-col items-center justify-center bg-slate-900/50">
