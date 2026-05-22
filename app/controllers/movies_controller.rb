@@ -19,12 +19,14 @@ class MoviesController < ApplicationController
   end
 
   def select_seats
-  @showtime = Showtime.find(params[:id])
+  @showtime = Showtime.find(params[:showtime_id] || params[:id])
   @screen = @showtime.screen
   @movie = @showtime.movie
   # Get all 100 seats ordered by Row and Number
   @seats = @screen.seats.order(:row, :number)
-  @booked_seats = @showtime.booked_seat_ids
+  @booked_seats = TicketSeat.joins(:ticket)
+                            .where(tickets: { showtime_id: @showtime.id, status: "paid" })
+                            .pluck(:seat_number)
+  
   end
-
 end

@@ -1,0 +1,35 @@
+<header class="mb-10">
+  <h1 class="text-4xl font-black tracking-tight mb-2">Checkout</h1>
+  <p class="text-zinc-500 text-sm italic uppercase tracking-widest">Secure Payment Gateway</p>
+</header>
+
+<div class="space-y-8">
+  <div class="space-y-3">
+    <label class="block text-xs font-black text-zinc-400 uppercase tracking-[0.2em]">Cardholder Name</label>
+    <input type="text" id="cardholder-name" placeholder="e.g. NGUYEN VAN A" 
+           class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all placeholder:text-zinc-700 text-white font-medium">
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-zinc-900/30 border border-zinc-900 rounded-3xl">
+    <div class="md:col-span-2 space-y-3">
+      <label class="block text-xs font-black text-zinc-400 uppercase tracking-[0.2em]">Card Number</label>
+      <div id="card-number" class="bg-zinc-950 border border-zinc-800 p-4 rounded-xl h-[54px]"></div>
+    </div>
+    <div class="space-y-3">
+      <label class="block text-xs font-black text-zinc-400 uppercase tracking-[0.2em]">Expiry Date</label>
+      <div id="card-expiry" class="bg-zinc-950 border border-zinc-800 p-4 rounded-xl h-[54px]"></div>
+    </div>
+    <div class="space-y-3">
+      <label class="block text-xs font-black text-zinc-400 uppercase tracking-[0.2em]">CVC / CVV</label>
+      <div id="card-cvc" class="bg-zinc-950 border border-zinc-800 p-4 rounded-xl h-[54px]"></div>
+    </div>
+  </div>
+</div>
+
+<button data-action="click->payment#handleSubmit" 
+        data-payment-target="submitButton"
+        class="mt-10 group relative w-full bg-red-600 hover:bg-red-500 py-5 rounded-2xl transition-all duration-300">
+  <span class="relative z-10 font-black text-lg tracking-widest uppercase" data-payment-target="buttonText">
+    Confirm & Pay <%= number_to_currency(@total) %>
+  </span>
+</button>

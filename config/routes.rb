@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "search", to: "search#index"
-  resources :movies, only: [:index, :show]
+  resources :movies, only: [ :index, :show ]
   root "movies#index"
 
   devise_for :users
@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     get "/forgot_password", to: "devise/passwords#new", as: :forgot_password
   end
 
-  resources :theaters, only: [:index, :show]
+  resources :theaters, only: [ :index, :show ]
+  resources :payments, only: [ :new, :create ]
 
   namespace :admin do
     resources :movies
@@ -28,6 +29,13 @@ Rails.application.routes.draw do
     get "select_seats/:showtime_id", to: "movies#select_seats", as: "select_seats"
   end
  end
+
+ resources :my_bookings, only: [:index]
+
+
+ post "/webhooks/stripe", to: "stripe#stripe"
+
+ get "/payments/success", to: "payments#success"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

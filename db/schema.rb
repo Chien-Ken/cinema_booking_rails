@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_15_071130) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_20_075100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -116,6 +116,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_15_071130) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ticket_seats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.decimal "price"
+    t.string "seat_number"
+    t.bigint "ticket_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_ticket_seats_on_ticket_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "showtime_id", null: false
+    t.string "status"
+    t.string "stripe_payment_intent_id"
+    t.decimal "total_amount"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["showtime_id"], name: "index_tickets_on_showtime_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
@@ -139,4 +160,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_15_071130) do
   add_foreign_key "seats", "screens"
   add_foreign_key "showtimes", "movies"
   add_foreign_key "showtimes", "screens"
+  add_foreign_key "ticket_seats", "tickets"
+  add_foreign_key "tickets", "showtimes"
+  add_foreign_key "tickets", "users"
 end

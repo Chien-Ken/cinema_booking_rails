@@ -1,0 +1,87 @@
+<div class="min-h-screen bg-black py-10 px-4">
+  <div class="max-w-4xl mx-auto">
+    
+    <h2 class="text-3xl font-bold text-white mb-8 tracking-wider">My Reservations</h2>
+
+    <% if @tickets.empty? %>
+      <div class="text-center py-20 bg-slate-900 rounded-2xl border border-slate-800">
+        <p class="text-slate-400 text-lg">Bạn chưa có suất chiếu nào được đặt.</p>
+        <a href="/" class="text-pink-500 hover:underline mt-4 block">Khám phá phim ngay</a>
+      </div>
+    <% else %>
+      
+      <% @tickets.each do |ticket| %>
+        <div class="flex flex-col md:flex-row bg-slate-900 text-white rounded-2xl overflow-hidden mb-6 border border-slate-800 shadow-2xl hover:border-slate-700 transition duration-300">
+          
+        <div class="w-full md:w-40 h-56 flex-shrink-0">
+        <% if ticket.showtime.movie.poster.attached? %>
+          <%= image_tag ticket.showtime.movie.poster, class: "w-full h-full object-cover" %>
+        <% else %>
+          <div class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500 text-xs">
+            No Poster
+          </div>
+        <% end %>
+        </div>
+
+          <div class="flex-grow p-6 flex flex-col justify-between">
+            <div>
+              <h3 class="text-2xl font-black tracking-tighter text-white uppercase italic">
+                <%= ticket.showtime.movie.title %>
+              </h3>
+             <p class="text-yellow-500 text-sm mt-1 font-bold flex items-center">
+            <span class="mr-2">🎬</span> 
+            <%= ticket.showtime.screen.theater.name %> - <%= ticket.showtime.screen.name %>
+            </p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-2 md:gap-4 my-4 text-sm">
+              <div>
+                <span class="block text-[10px] uppercase font-bold text-slate-500 tracking-widest">Date</span>
+                <span class="text-white font-semibold">
+                  <%= ticket.showtime.start_time.strftime("%b %d, %Y") %>
+                </span>
+              </div>
+              <div>
+                <span class="block text-[10px] uppercase font-bold text-slate-500 tracking-widest">Time</span>
+                <span class="text-white font-semibold">
+                  <%= ticket.showtime.start_time.strftime("%I:%M %p") %>
+                </span>
+              </div>
+              <div>
+                <span class="block text-[10px] uppercase font-bold text-slate-500 tracking-widest">Seats</span>
+                <span class="text-white font-semibold">
+                  Row <%= ticket.ticket_seats.pluck(:seat_number).join(', ') %>
+                </span>
+              </div>
+              
+            </div>
+
+            <div>
+              <button class="bg-slate-800 hover:bg-red-900 transition-colors duration-300 text-slate-300 hover:text-white px-5 py-2 rounded-lg text-xs font-bold border border-slate-700 shadow-lg">
+                Cancel Booking
+              </button>
+            </div>
+          </div>
+
+          <div class="w-full md:w-40 border-t md:border-t-0 md:border-l border-dashed border-slate-700 p-6 flex flex-col items-center justify-center bg-slate-900/50">
+            <div class="bg-white p-1.5 rounded-lg shadow-xl">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Ticket-<%= ticket.id %>" 
+                   class="w-20 h-20" alt="QR Code">
+            </div>
+            <p class="text-[9px] text-slate-500 mt-3 font-mono">BOOKING ID: #<%= ticket.id %></p>
+          </div>
+
+        </div>
+      <% end %>
+
+    <% end %>
+
+    <div class="text-center mt-12 pb-10">
+      <p class="text-slate-500 text-sm mb-4">Looking for more action?</p>
+      <a href="/" class="inline-block bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white px-8 py-3 rounded-xl font-bold transition">
+        Browse Now Playing
+      </a>
+    </div>
+
+  </div>
+</div>

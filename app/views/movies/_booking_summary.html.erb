@@ -32,11 +32,11 @@
   <p class="text-rose-300 text-2xl font-bold" data-selection-target="total">$0.00</p>
 </div>
 
-  <button class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 rounded-xl mt-8 transition duration-200">
-    Proceed to Payment
-  </button>
-  
-  <p class="text-center text-[10px] text-slate-500 mt-4">
+<%= link_to "Proceed to Payment", "#", 
+      data: { selection_target: "submitButton" },
+      class: "block w-full text-center bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 rounded-xl mt-8 opacity-50 pointer-events-none transition" %>
+
+  <p class="text-center tet-[10px] text-slate-500 mt-4">
     By proceeding, you agree to our Terms & Conditions
   </p>
 </div>

@@ -1,0 +1,23 @@
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+  <h2 style="color: #ec4899; text-align: center; margin-bottom: 5px;">CẢM ƠN BẠN ĐÃ ĐẶT VÉ!</h2>
+  <p style="text-align: center; color: #64748b; margin-top: 0;">Mã đơn hàng: #<%= @ticket.id %></p>
+  
+  <p>Xin chào <strong><%= @user.email %></strong>,</p>
+  <p>Giao dịch của bạn đã được xác nhận thành công. Dưới đây là thông tin vé xem phim của bạn:</p>
+  
+  <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 20px 0;">
+  
+  <div style="background-color: #f8fafc; padding: 20px; border-radius: 6px; border-left: 4px solid #ec4899;">
+    <h3 style="margin-top: 0; color: #1e293b; font-size: 18px;"><%= @movie.title %></h3>
+    <p style="margin: 8px 0;">🎬 <strong>Rạp:</strong> <%= @showtime.screen.theater.name %></p>
+    <p style="margin: 8px 0;">📺 <strong>Phòng chiếu:</strong> <%= @showtime.screen.name %></p>
+    <p style="margin: 8px 0;">📅 <strong>Suất chiếu:</strong> <%= @showtime.start_time.strftime("%d/%m/%Y lúc %H:%M") %></p>
+    <p style="margin: 8px 0;">💺 <strong>Số ghế đã chọn:</strong> <span style="color: #ec4899; font-weight: bold;"><%= @ticket.ticket_seats.pluck(:seat_number).join(', ') %></span></p>
+    <p style="margin: 8px 0;">💰 <strong>Tổng thanh toán:</strong> <%= number_to_currency(@ticket.total_amount, unit: "VND", precision: 0, format: "%n %u") %></p>
+  </div>
+
+  <div style="text-align: center; margin-top: 25px;">
+    <p style="font-size: 13px; color: #64748b;">Vui lòng đưa email này hoặc mã đặt vé cho nhân viên tại quầy để nhận vé cứng vào phòng chiếu.</p>
+    <p style="font-weight: bold; color: #ec4899; font-size: 16px;">Chúc bạn có những giây phút xem phim tuyệt vời! 🍿🎥</p>
+  </div>
+</div>

@@ -11,4 +11,5 @@ class User < ApplicationRecord
     return if password.blank? || password =~ /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}/
     errors.add :password, "must include at least one uppercase letter, one lowercase letter, one digit, and one special character"
   end
+  has_many :tickets, dependent: :destroy
 end

@@ -1,0 +1,32 @@
+<div class="bg-zinc-900 border border-zinc-800 rounded-[2.5rem] p-8 sticky top-32">
+  <h2 class="text-zinc-500 text-xs font-black uppercase tracking-[0.3em] mb-8">Ticket Summary</h2>
+  
+  <div class="flex gap-6 mb-10">
+    <%# Replace line 5 in your _summary partial %>
+    <% if movie.poster.attached? %>
+    <%= image_tag movie.poster, class: "w-28 h-40 object-cover rounded-2xl border border-zinc-700 shadow-2xl" %>
+    <% else %>
+    <div class="w-28 h-40 bg-zinc-800 rounded-2xl flex items-center justify-center border border-zinc-700">
+        <span class="text-zinc-600 text-[10px]">No Poster</span>
+    </div>
+    <% end %>
+    <div class="flex flex-col justify-center">
+      <h3 class="text-2xl font-bold leading-tight mb-2"><%= movie.title %></h3>
+      <p class="text-zinc-400 text-sm italic"><%= showtime.start_time.strftime("%A, %I:%M %p") %></p>
+      <p class="text-zinc-400 text-sm">Hall <%= showtime.screen.name %></p>
+    </div>
+  </div>
+
+  <div class="space-y-6 pt-6 border-t border-zinc-800/50">
+    <div class="flex justify-between items-center">
+      <span class="text-zinc-500 font-bold text-xs uppercase tracking-widest">Seats</span>
+      <span class="px-3 py-1 bg-zinc-800 rounded-lg font-mono text-sm"><%= @seat_ids.join(", ")%></span>
+    </div>
+    <div class="flex justify-between items-end pt-4">
+      <div>
+        <span class="block text-zinc-500 text-[10px] font-black uppercase tracking-widest">Total</span>
+        <span class="text-4xl font-black text-white">$<%= total %></span>
+      </div>
+    </div>
+  </div>
+</div>
