@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   redis:
     image: redis:7-alpine
@@ -7,9 +9,8 @@ services:
     volumes:
       - redis_data:/data
 
-  
   web:
-    build: .
+    image: chienpm1/cinema_web:latest
     container_name: cinema_web
     command: ./bin/rails server -b 0.0.0.0
     ports:
@@ -23,9 +24,8 @@ services:
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
       - DATABASE_URL=${DATABASE_URL}
 
- 
   sidekiq:
-    build: . 
+    image: chienpm1/cinema_web:latest
     container_name: cinema_sidekiq
     command: bundle exec sidekiq 
     depends_on:
@@ -35,6 +35,7 @@ services:
       - RAILS_ENV=production
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
 
 volumes:
   redis_data:
