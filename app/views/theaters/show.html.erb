@@ -1,28 +1,32 @@
 <div class="bg-[#0b1120] min-h-screen text-white">
   
   <section class="relative h-[450px] w-full flex items-end pb-12 overflow-hidden">
-   <div class="relative aspect-[16/10] overflow-hidden">
-    <% if @theater.main_image.attached? %>
-      <%= image_tag theater_detail_image(@theater), 
-          class: "w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700", 
-          alt: @theater.name %>
-    <% else %>
-      <div class="w-full h-full bg-gray-900 flex items-center justify-center">
-        <span class="text-gray-700 italic text-sm">No image available</span>
-      </div>
-    <% end %>
-    <div class="absolute inset-0 bg-gradient-to-t from-[#161d2f] via-transparent to-transparent opacity-60"></div>
-  </div>
+    <div class="absolute inset-0 z-0">
+      <% if @theater.main_image.attached? %>
+        <%= image_tag theater_detail_image(@theater), 
+            class: "w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700", 
+            alt: @theater.name %>
+      <% else %>
+        <div class="w-full h-full bg-gray-900 flex items-center justify-center">
+          <span class="text-gray-700 italic text-sm"><%= t('theaters.show.no_image') %></span>
+        </div>
+      <% end %>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/40 to-transparent"></div>
+    </div>
 
     <div class="container mx-auto px-6 md:px-12 relative z-10">
-      <p class="text-[#f87171] text-xs font-black uppercase tracking-[0.3em] mb-3">Theater Profile</p>
+      <p class="text-[#f87171] text-xs font-black uppercase tracking-[0.3em] mb-3">
+        <%= t('theaters.show.profile') %>
+      </p>
       <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-tighter"><%= @theater.name %></h1>
       
       <div class="flex flex-wrap items-center gap-6 text-sm text-gray-300">
         <div class="flex items-center gap-2">
           <span class="text-[#fbbf24]">★</span>
           <span class="font-bold">4.9</span>
-          <span class="text-gray-500">(2.4k Reviews)</span>
+          <span class="text-gray-500">
+            <%= t('theaters.show.reviews_count', count: "2.4k") %>
+          </span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-4 h-4 text-[#e11d48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -36,7 +40,7 @@
     <div class="container mx-auto px-6 md:px-12 max-w-4xl">
       
       <div class="mb-16">
-        <h2 class="text-2xl font-bold mb-6">About the Theater</h2>
+        <h2 class="text-2xl font-bold mb-6"><%= t('theaters.show.about') %></h2>
         <div class="text-gray-400 leading-relaxed space-y-4 text-lg">
           <%= simple_format(@theater.description) %>
         </div>
@@ -49,8 +53,12 @@
             <svg class="w-6 h-6 text-[#e11d48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <h4 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Opening Hours</h4>
-            <p class="text-sm font-medium text-gray-300">Mon - Sun: <%= @theater.opening_time %> - <%= @theater.closing_time %></p>
+            <h4 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">
+              <%= t('theaters.show.opening_hours') %>
+            </h4>
+            <p class="text-sm font-medium text-gray-300">
+              <%= t('theaters.show.schedule', opening: @theater.opening_time, closing: @theater.closing_time) %>
+            </p>
           </div>
         </div>
 
@@ -59,7 +67,9 @@
             <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           </div>
           <div>
-            <h4 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Contact</h4>
+            <h4 class="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">
+              <%= t('theaters.show.contact') %>
+            </h4>
             <p class="text-sm font-bold text-gray-200 mb-1"><%= @theater.phone %></p>
             <p class="text-xs text-gray-400"><%= @theater.email %></p>
           </div>
@@ -70,7 +80,7 @@
       <div class="mt-16 pt-8 border-t border-gray-800">
         <%= link_to theaters_path, class: "text-gray-500 hover:text-[#e11d48] transition-colors flex items-center gap-2 font-bold" do %>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-          Back to all theaters
+          <%= t('theaters.show.back') %>
         <% end %>
       </div>
 

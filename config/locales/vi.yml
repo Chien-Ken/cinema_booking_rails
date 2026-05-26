@@ -24,3 +24,72 @@ vi:
       filter_sort: "Lọc & Sắp xếp"
       no_poster: "Không có ảnh"
       duration_short: "%{minutes}phút"
+
+    show:
+      no_poster: "Không có ảnh"
+      runtime: "Thời lượng"
+      duration_format: "%{minutes} phút"
+      released: "Khởi chiếu"
+      date_format: "%d/%m/%Y"
+      director: "Đạo diễn"
+      book_now: "Đặt vé ngay"
+      description_title: "Nội dung phim"
+
+    booking:
+      select_showtime: "Chọn suất chiếu"
+      no_screens: "Rạp này hiện chưa có phòng chiếu nào."
+
+    select_seats:
+      screen_title: "Màn hình sân khấu"
+      status_available: "Còn trống"
+      status_booked: "Đã đặt"
+      status_selected: "Đang chọn"
+      time_format: "%H:%M"
+
+      summary_title: "Thông tin đặt vé"
+      selected_seats: "Ghế đã chọn"
+      none: "Chưa chọn"
+      theater: "Rạp chiếu"
+      showtime: "Suất chiếu"
+      datetime_format: "%d/%m/%Y • %H:%M"
+      ticket_price: "Giá vé (%{count}x)"
+      total_payable: "Tổng thanh toán"
+      proceed_to_payment: "Tiến hành thanh toán"
+      terms_conditions: "Bằng việc tiếp tục, bạn đồng ý với Điều khoản & Điều kiện của chúng tôi"
+
+  theaters:
+    index:
+      title: "Hệ thống Rạp"
+      subtitle: "Tìm kiếm chi nhánh CineGlass lý tưởng cho buổi xem phim tiếp theo của bạn."
+      no_image: "Không có hình ảnh"
+      view_details: "Xem chi tiết"
+
+    show:
+      profile: "Hồ sơ rạp"
+      reviews_count: "(%{count} Đánh giá)"
+      about: "Giới thiệu về rạp"
+      opening_hours: "Giờ mở cửa"
+      schedule: "T2 - CN: %{opening} - %{closing}"
+      contact: "Liên hệ"
+      back: "Quay lại danh sách rạp"
+      no_image: "Không có hình ảnh"
+  
+  my_bookings:
+    index:
+      title: "Vé Của Tôi"
+      empty_message: "Bạn chưa có suất chiếu nào được đặt."
+      explore_movies: "Khám phá phim ngay"
+      no_poster: "Không có ảnh"
+      label_date: "Ngày chiếu"
+      label_time: "Giờ chiếu"
+      label_seats: "Ghế ngồi"
+      seats_format: "Hàng %{seats}"
+      date_format: "%d/%m/%Y"
+      time_format: "%H:%M"
+      status_paid: "Đã thanh toán"
+      status_canceled: "❌ Đã hủy & Hoàn tiền"
+      cancel_timeout: "⚠️ Đã hết thời hạn hủy vé (Sát giờ hoặc phim đã chiếu)"
+      cancel_button: "Hủy vé & Hoàn tiền"
+      cancel_confirm: "Bạn có chắc chắn muốn hủy vé này? Tiền sẽ được hoàn lại 100% vào thẻ của bạn."
+      more_action: "Bạn muốn tìm thêm phim khác?"
+      browse_now: "Xem danh sách phim"

@@ -92,13 +92,13 @@ production:
     password: <%= ENV["CINEMA_BOOKING_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: cinema_booking_production_cache
+    database: cinema_booking_production
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: cinema_booking_production_queue
+    database: cinema_booking_production
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: cinema_booking_production_cable
+    database: cinema_booking_production
     migrations_paths: db/cable_migrate

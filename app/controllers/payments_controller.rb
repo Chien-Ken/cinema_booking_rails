@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  before_action :authenticate_user!
   def new
     # 1. Grab data from the URL params
     @seat_ids = params[:seat_ids] || []

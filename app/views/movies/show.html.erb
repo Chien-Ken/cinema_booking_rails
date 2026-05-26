@@ -22,7 +22,7 @@
           <% if @movie.poster.attached? %>
             <%= image_tag @movie.poster, class: "w-full h-full object-cover" %>
           <% else %>
-            <div class="w-full h-full bg-slate-800 flex items-center justify-center italic text-slate-500">No Poster</div>
+            <div class="w-full h-full bg-slate-800 flex items-center justify-center italic text-slate-500"><%= t('movies.show.no_poster') %></div>
           <% end %>
         </div>
       </div>
@@ -46,20 +46,20 @@
 
         <div class="flex flex-wrap gap-x-8 gap-y-4 text-slate-300 font-medium mb-6">
           <div class="flex items-center gap-2">
-            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold">Runtime</span>
+            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold"><%= t('movies.show.runtime') %></span>
             <span><%= @movie.duration_minutes %>m</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold">Released</span>
-            <span><%= @movie.release_date.strftime("%b %d, %Y") %></span>
+            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold"><%= t('movies.show.released') %></span>
+            <span><%= @movie.release_date.strftime(t('movies.show.date_format')) %></span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold">Director</span>
+            <span class="text-slate-500 text-xs uppercase tracking-widest font-bold"><%= t('movies.show.director') %></span>
             <span class="text-red-500 font-bold hover:underline cursor-pointer"><%= @movie.director %></span>
           </div>
         </div>
 
-        <%= link_to "Book Now", booking_movie_path(@movie), 
+        <%= link_to t('movies.show.book_now'), booking_movie_path(@movie), 
             class: "inline-block bg-[#e11d48] hover:bg-red-500 text-white font-black px-12 py-4 rounded-xl text-lg shadow-xl shadow-red-900/40 transition-all transform hover:scale-105 active:scale-95" %>
       </div>
     </div>
@@ -71,7 +71,7 @@
   <div class="max-w-4xl">
     <div class="flex items-center gap-4 mb-8">
       <div class="w-1.5 h-8 bg-red-500 rounded-full"></div>
-      <h3 class="text-2xl font-black text-white tracking-tight">Description</h3>
+      <h3 class="text-2xl font-black text-white tracking-tight"><%= t('movies.show.description_title') %></h3>
     </div>
     
     <div class="bg-white/5 border border-white/5 rounded-3xl p-8 md:p-12 leading-relaxed text-slate-400 text-lg shadow-inner">

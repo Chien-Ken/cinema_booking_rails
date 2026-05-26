@@ -4,7 +4,7 @@
     <%# Header Section %>
     <div class="mb-12 border-b border-slate-800 pb-6">
       <h1 class="text-3xl font-black text-white uppercase tracking-tighter">
-        Select Showtime: <span class="text-red-500"><%= @movie.title %></span>
+        <%= t('movies.booking.select_showtime') %>: <span class="text-red-500"><%= @movie.title %></span>
       </h1>
     </div>
 
@@ -38,7 +38,7 @@
         <% end %> <%# End Screen Loop %>
         
         <% if theater.screens.empty? %>
-          <p class="text-slate-600 italic text-sm">No screens available for this theater yet.</p>
+          <p class="text-slate-600 italic text-sm"><%= t('movies.booking.no_screens') %></p>
         <% end %>
       </div>
     </section>

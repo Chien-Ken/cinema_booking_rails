@@ -24,3 +24,72 @@ en:
       filter_sort: "Filter & Sort"
       no_poster: "No Poster"
       duration_short: "%{minutes}m"
+
+    show:
+      no_poster: "No Poster"
+      runtime: "Runtime"
+      duration_format: "%{minutes}m"
+      released: "Released"
+      date_format: "%b %d, %Y"
+      director: "Director"
+      book_now: "Book Now"
+      description_title: "Description"
+
+    booking:
+      select_showtime: "Select Showtime"
+      no_screens: "No screens available for this theater yet."
+
+    select_seats:
+      screen_title: "Theatrical Screen"
+      status_available: "Available"
+      status_booked: "Booked"
+      status_selected: "Selected"
+      time_format: "%I:%M %p"
+
+      summary_title: "Booking Summary"
+      selected_seats: "Selected Seats"
+      none: "None"
+      theater: "Theater"
+      showtime: "Showtime"
+      datetime_format: "%b %d, %Y • %I:%M %p"
+      ticket_price: "Ticket Price (%{count}x)"
+      total_payable: "Total Payable"
+      proceed_to_payment: "Proceed to Payment"
+      terms_conditions: "By proceeding, you agree to our Terms & Conditions"
+
+  theaters:
+    index:
+      title: "Our Theaters"
+      subtitle: "Find the perfect CineGlass location for your next movie night."
+      no_image: "No image available"
+      view_details: "View Details"
+
+    show:
+      profile: "Theater Profile"
+      reviews_count: "(%{count} Reviews)"
+      about: "About the Theater"
+      opening_hours: "Opening Hours"
+      schedule: "Mon - Sun: %{opening} - %{closing}"
+      contact: "Contact"
+      back: "Back to all theaters"
+      no_image: "No image available"
+
+  my_bookings:
+    index:
+      title: "My Reservations"
+      empty_message: "You have not booked any showtimes yet."
+      explore_movies: "Explore movies now"
+      no_poster: "No Poster"
+      label_date: "Date"
+      label_time: "Time"
+      label_seats: "Seats"
+      seats_format: "Row %{seats}"
+      date_format: "%b %d, %Y"
+      time_format: "%I:%M %p"
+      status_paid: "Paid"
+      status_canceled: "❌ Canceled & Refunded"
+      cancel_timeout: "⚠️ Cancellation period expired (Close to showtime or already started)"
+      cancel_button: "Cancel Ticket & Refund"
+      cancel_confirm: "Are you sure you want to cancel this ticket? A 100% refund will be issued to your card."
+      more_action: "Looking for more action?"
+      browse_now: "Browse Now Playing"

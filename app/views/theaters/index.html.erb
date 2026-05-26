@@ -2,8 +2,8 @@
   <div class="container mx-auto px-6">
     
     <div class="mb-12">
-      <h1 class="text-white text-5xl font-extrabold tracking-tight mb-2">Our Theaters</h1>
-      <p class="text-gray-400 text-lg font-medium">Find the perfect CineGlass location for your next movie night.</p>
+      <h1 class="text-white text-5xl font-extrabold tracking-tight mb-2"><%= t('theaters.index.title') %></h1>
+      <p class="text-gray-400 text-lg font-medium"><%= t('theaters.index.subtitle') %></p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -17,7 +17,7 @@
                 alt: theater.name %>
           <% else %>
             <div class="w-full h-full bg-gray-900 flex items-center justify-center">
-              <span class="text-gray-700 italic text-sm">No image available</span>
+              <span class="text-gray-700 italic text-sm"><%= t('theaters.index.no_image') %></span>
             </div>
           <% end %>
           <div class="absolute inset-0 bg-gradient-to-t from-[#161d2f] via-transparent to-transparent opacity-60"></div>
@@ -49,7 +49,7 @@
 
             <div class="mt-auto">
               <%= link_to theater_path(theater), class: "group/btn relative block w-full overflow-hidden rounded-xl bg-[#e11d48] px-6 py-3.5 text-center transition-all duration-300 hover:bg-[#be123c] active:scale-95 shadow-lg shadow-black/20" do %>
-                <span class="relative z-10 text-white text-sm font-black uppercase tracking-tighter">View Details</span>
+                <span class="relative z-10 text-white text-sm font-black uppercase tracking-tighter"><%= t('theaters.index.view_details') %></span>
               <% end %>
             </div>
           </div>

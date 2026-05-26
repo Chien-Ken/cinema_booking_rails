@@ -25,7 +25,7 @@ class MyBookingsController < ApplicationController
   end
 
   TicketMailer.cancel_ticket(@ticket).deliver_later
-  puts "📧 Cancel Mailer triggered successfully for Ticket ##{@ticket.id}!"
+
 
   redirect_to my_bookings_path, notice: "Hủy vé thành công! Tiền đang được Stripe hoàn lại vào tài khoản của bạn."
 

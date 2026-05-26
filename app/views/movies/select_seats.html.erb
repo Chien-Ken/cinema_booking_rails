@@ -9,7 +9,7 @@
     <div class="mb-10 text-center">
       <h1 class="text-3xl font-bold"><%= @movie.title %></h1>
       <p class="text-zinc-400 mt-2 text-sm">
-        <%= @showtime.screen.theater.name %> • <%= @showtime.screen.name %> • <%= @showtime.start_time.strftime("%I:%M %p") %>
+        <%= @showtime.screen.theater.name %> • <%= @showtime.screen.name %> • <%= @showtime.start_time.strftime(t('movies.select_seats.time_format')) %>
       </p>
     </div>
 
@@ -18,7 +18,7 @@
       <div class="w-full max-w-2xl">
         <div class="relative mb-16 px-10">
           <div class="w-full h-1.5 bg-blue-500 shadow-[0_-5px_20px_rgba(59,130,246,0.6)] rounded-full"></div>
-          <p class="text-center text-[10px] text-zinc-600 uppercase tracking-widest mt-4">Theatrical Screen</p>
+          <p class="text-center text-[10px] text-zinc-600 uppercase tracking-widest mt-4"><%= t('movies.select_seats.screen_title') %></p>
         </div>
 
       <div class="grid grid-cols-10 gap-3">
@@ -40,13 +40,13 @@
 
         <div class="mt-12 flex justify-center gap-8 text-[11px] border-t border-zinc-900 pt-8 uppercase tracking-wider text-zinc-500">
           <div class="flex items-center gap-2 text-emerald-500">
-            <div class="w-3 h-3 border border-emerald-500 rounded-sm"></div> <span>Available</span>
+            <div class="w-3 h-3 border border-emerald-500 rounded-sm"></div> <span><%= t('movies.select_seats.status_available') %></span>
           </div>
           <div class="flex items-center gap-2">
-            <div class="w-3 h-3 bg-zinc-800 rounded-sm"></div> <span>Booked</span>
+            <div class="w-3 h-3 bg-zinc-800 rounded-sm"></div> <span><%= t('movies.select_seats.status_booked') %></span>
           </div>
           <div class="flex items-center gap-2 text-red-500">
-            <div class="w-3 h-3 bg-red-600 rounded-sm"></div> <span>Selected</span>
+            <div class="w-3 h-3 bg-red-600 rounded-sm"></div> <span><%= t('movies.select_seats.status_selected') %></span>
           </div>
         </div>
       </div> <aside class="w-full lg:w-96 sticky top-8">

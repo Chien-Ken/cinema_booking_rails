@@ -1,42 +1,50 @@
 <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl w-full max-w-sm border border-slate-800">
-  <h2 class="text-amber-200 uppercase tracking-widest text-sm font-bold mb-6">Booking Summary</h2>
+  <h2 class="text-amber-200 uppercase tracking-widest text-sm font-bold mb-6">
+    <%= t('movies.select_seats.summary_title') %>
+  </h2>
 
   <div class="flex justify-between items-start mb-6">
     <div>
-      <p class="text-slate-400 text-xs mb-1">Selected Seats</p>
-      <p class="text-rose-300 text-xl font-bold font-mono" data-selection-target="seatNames">None</p>
+      <p class="text-slate-400 text-xs mb-1"><%= t('movies.select_seats.selected_seats') %></p>
+      <p class="text-rose-300 text-xl font-bold font-mono" data-selection-target="seatNames">
+        <%= t('movies.select_seats.none') %>
+      </p>
     </div>
     <div class="text-right">
-      <p class="text-slate-400 text-xs mb-1">Theater</p>
+      <p class="text-slate-400 text-xs mb-1"><%= t('movies.select_seats.theater') %></p>
       <p class="text-slate-200 text-sm font-semibold">IMAX • <%= @showtime.screen.name %></p>
     </div>
   </div>
 
   <div class="bg-slate-800/50 p-4 rounded-xl mb-8 flex justify-between items-center border border-slate-700">
     <div>
-      <p class="text-slate-400 text-xs mb-1">Showtime</p>
-      <p class="text-slate-200 text-sm"><%= @showtime.start_time.strftime("%b %d, %Y • %I:%M %p") %></p>
+      <p class="text-slate-400 text-xs mb-1"><%= t('movies.select_seats.showtime') %></p>
+      <p class="text-slate-200 text-sm">
+        <%= @showtime.start_time.strftime(t('movies.select_seats.datetime_format')) %>
+      </p>
     </div>
     <i class="far fa-clock text-amber-200"></i>
   </div>
 
- <div class="space-y-3 mb-6">
-  <div class="flex justify-between text-slate-300 text-sm">
-    <span>Ticket Price (<span data-selection-target="count">0</span>x)</span>
-    <span>$<%= number_with_precision(@movie.price, precision: 2) %></span>
+  <div class="space-y-3 mb-6">
+    <div class="flex justify-between text-slate-300 text-sm">
+      <span>
+        <%= t('movies.select_seats.ticket_price', count: '<span data-selection-target="count">0</span>').html_safe %>
+      </span>
+      <span>$<%= number_with_precision(@movie.price, precision: 2) %></span>
+    </div>
   </div>
-</div>
 
-<div class="border-t border-slate-700 pt-4 flex justify-between items-center">
-  <p class="text-slate-200 font-bold text-lg">Total Payable</p>
-  <p class="text-rose-300 text-2xl font-bold" data-selection-target="total">$0.00</p>
-</div>
+  <div class="border-t border-slate-700 pt-4 flex justify-between items-center">
+    <p class="text-slate-200 font-bold text-lg"><%= t('movies.select_seats.total_payable') %></p>
+    <p class="text-rose-300 text-2xl font-bold" data-selection-target="total">$0.00</p>
+  </div>
 
-<%= link_to "Proceed to Payment", "#", 
-      data: { selection_target: "submitButton" },
-      class: "block w-full text-center bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 rounded-xl mt-8 opacity-50 pointer-events-none transition" %>
+  <%= link_to t('movies.select_seats.proceed_to_payment'), "#", 
+        data: { selection_target: "submitButton" },
+        class: "block w-full text-center bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 rounded-xl mt-8 opacity-50 pointer-events-none transition" %>
 
-  <p class="text-center tet-[10px] text-slate-500 mt-4">
-    By proceeding, you agree to our Terms & Conditions
+  <p class="text-center text-[10px] text-slate-500 mt-4">
+    <%= t('movies.select_seats.terms_conditions') %>
   </p>
 </div>
