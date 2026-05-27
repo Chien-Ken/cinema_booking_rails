@@ -1,5 +1,5 @@
 class StripeController < ApplicationController
-  skip_before_action :verify_authenticity_token, raise: false
+  skip_before_action :verify_authenticity_token, only: [:stripe]
 
   def stripe
     payload = request.body.read
