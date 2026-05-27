@@ -27,7 +27,7 @@ gem "pg_search"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 
-gem "will_paginate", "~> 3.3"
+gem "will_paginate", "~> 4.0"
 
 gem "devise"
 
