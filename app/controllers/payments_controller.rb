@@ -35,12 +35,11 @@ class PaymentsController < ApplicationController
         automatic_payment_methods: { enabled: true },
         metadata: {
           showtime_id: @showtime.id,
-          seats: @seat_ids.join(","),      # 🌟 Changed key name to match your webhook controller expectance ('seats')
-          user_id: current_user.id        # 🌟 ADDED: Your webhook requires this to save!
+          seats: @seat_ids.join(","),      
+          user_id: current_user.id    
         }
       )
     rescue Stripe::StripeError => e
-      # 🚨 If Stripe fails, gracefully unlock the seats in Redis right away!
       @seat_ids.each do |seat_id|
         $redis.del("lock:showtime:#{@showtime.id}:seat:#{seat_id}")
       end

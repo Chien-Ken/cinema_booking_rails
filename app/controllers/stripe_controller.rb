@@ -30,7 +30,6 @@ class StripeController < ApplicationController
         total_price = payment_intent.amount / 100.0
         seat_price  = total_price / seats_array.size
 
-        # 🛡️ WRAP TRONG TRANSACTION VÀ CHỈ GỬI MAIL KHI ĐÃ COMMIT THÀNH CÔNG
         ActiveRecord::Base.transaction do
           ticket = Ticket.create!(
             user_id: user_id,
@@ -77,7 +76,6 @@ class StripeController < ApplicationController
 
     when "charge.refunded"
       refund_object = event.data.object
-      # Xử lý refund nếu cần ở đây...
 
     else
       Rails.logger.info "Unhandled event type: #{event.type}"

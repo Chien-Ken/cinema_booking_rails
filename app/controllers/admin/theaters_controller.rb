@@ -44,7 +44,7 @@ class Admin::TheatersController < Admin::ApplicationController
     params.require(:theater).permit(
       :name, :address, :city, :phone, :email,
       :opening_time, :closing_time, :description,
-      :main_image # Ensure this is here
+      :main_image
     )
   end
 
